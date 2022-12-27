@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.urls import include, re_path
 from django.contrib import admin
 from django.views.generic import RedirectView
 
@@ -22,15 +22,15 @@ from . import views
 urlpatterns = [
 
     # Django Suit custom admin view
-    url(r'^admin/custom/$', views.custom_admin_view),
+    re_path(r'^admin/custom/$', views.custom_admin_view),
 
-    url(r'^admin/', admin.site.urls),
+    re_path(r'^admin/', admin.site.urls),
 
     # Django-Select2
-    url(r'^select2/', include('django_select2.urls')),
+    re_path(r'^select2/', include('django_select2.urls')),
 
     # Documentation url for menu documentation link
-    url(r'^admin/custom2/', RedirectView.as_view(url='http://djangosuit.com/support/'), name='django-admindocs-docroot'),
+    re_path(r'^admin/custom2/', RedirectView.as_view(url='http://djangosuit.com/support/'), name='django-admindocs-docroot'),
 
-    url(r'^$', views.home, name='home'),
+    re_path(r'^$', views.home, name='home'),
 ]

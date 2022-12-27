@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import url
+from django.urls import re_path
 from django.contrib import admin
 from django.forms import ModelForm, Select, TextInput, NumberInput
 from django.contrib.admin.views.decorators import staff_member_required
@@ -314,7 +314,7 @@ class ShowcaseAdmin(RelatedFieldAdmin):
         """
         urls = super(ShowcaseAdmin, self).get_urls()
         my_urls = [
-            url(r'^(\d+)/clickme/$', showcase_custom_view_example, name='demo_showcase_clickme')
+            re_path(r'^(\d+)/clickme/$', showcase_custom_view_example, name='demo_showcase_clickme')
         ]
         return my_urls + urls
 
